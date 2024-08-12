@@ -14,7 +14,7 @@ class TechnologieController {
             });
 
             if (!userHaveTechnologies) {
-                return res.status(404).json({error: "User not found"});
+                return res.status(404).json({error: "User not exists"});
             }
 
             return res.status(200).json(userHaveTechnologies.technologies);
@@ -28,7 +28,7 @@ class TechnologieController {
         const {title, deadline}: {title: string, deadline: string} = req.body;
 
         if (new Date(deadline) <= new Date()) {
-            return res.status(400).json({error: "Erro com data."});
+            return res.status(400).json({error: "Error with date."});
         }
 
         try {
@@ -37,7 +37,7 @@ class TechnologieController {
             });
 
             if (!user) {
-                return res.status(404).json({error: "User not found"});
+                return res.status(404).json({error: "User not exists"});
             }
 
             const newTechnology = await prisma.technology.create({
@@ -68,7 +68,7 @@ class TechnologieController {
             });
 
             if (!user) {
-                return res.status(404).json({error: "User not found"});
+                return res.status(404).json({error: "User not exists"});
             }
 
             const technology = await prisma.technology.findFirst({
@@ -79,11 +79,11 @@ class TechnologieController {
             });
 
             if (!technology) {
-                return res.status(404).json({error: "Tecnologia não existe."});
+                return res.status(404).json({error: "Tecnologies not found."});
             }
 
             if (!!deadline && new Date(deadline) < new Date()) {
-                return res.status(400).json({error: "Data inválida."});
+                return res.status(400).json({error: "Invalid date."});
             }
 
             const updatedTechnology = await prisma.technology.update({
@@ -110,7 +110,7 @@ class TechnologieController {
             });
 
             if (!user) {
-                return res.status(404).json({error: "User not found"});
+                return res.status(404).json({error: "User not exists"});
             }
 
             const technology = await prisma.technology.findFirst({
@@ -147,7 +147,7 @@ class TechnologieController {
             });
 
             if (!user) {
-                return res.status(404).json({error: "User not found"});
+                return res.status(404).json({error: "User not exists"});
             }
 
             const technology = await prisma.technology.findFirst({
@@ -158,7 +158,7 @@ class TechnologieController {
             });
 
             if (!technology) {
-                return res.status(404).json({error: "Tecnologia não existe."});
+                return res.status(404).json({error: "Tecnologies not found."});
             }
 
             await prisma.technology.delete({

@@ -10,7 +10,7 @@ async function checkExistsUserAccount(req:Request, res:Response, next:NextFuncti
         });
 
         if (!user) {
-            return res.status(404).json({error: "user not found"});
+            return res.status(404).json({error: "user not exists"});
         }
 
         next();
